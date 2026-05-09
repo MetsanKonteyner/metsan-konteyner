@@ -12,11 +12,13 @@
     "id": "1776435919117",
     "name": "Çalışma masası2",
     "desc": "aaa",
+    "price": "",
     "condition": "Sıfır",
     "category": "Yük Konteyneri",
     "images": [
       "https://i.ibb.co/rKvZ2fxp/indir-1.jpg",
-      "https://i.ibb.co/5xJzDhW3/indir.jpg"
+      "https://i.ibb.co/5xJzDhW3/indir.jpg",
+      "https://i.ibb.co/LzX2YT1v/logo.png"
     ],
     "active": true
   },
