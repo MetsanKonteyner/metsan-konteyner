@@ -46,5 +46,17 @@
       "https://i.ibb.co/rKvZ2fxp/indir-1.jpg"
     ],
     "active": true
+  },
+  {
+    "id": "1778344845997",
+    "name": "Faruk Denem",
+    "desc": "konteyner",
+    "price": "66000",
+    "condition": "Sıfır",
+    "category": "Yük Konteyneri",
+    "images": [
+      "https://i.ibb.co/ksLvTJ9J/x5-1187818663ya0.jpg"
+    ],
+    "active": true
   }
 ]
