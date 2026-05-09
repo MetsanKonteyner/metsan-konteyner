@@ -1,0 +1,48 @@
+[
+  {
+    "id": "2",
+    "name": "Şantiye Ofis Konteyneri (3x6m)",
+    "desc": "Elektrik tesisatı hazır, sandviç panel yalıtımlı, pencereli standart ofis çözümü. Hemen kullanıma hazır.",
+    "condition": "İkinci El",
+    "category": "Ofis Konteyneri",
+    "images": [],
+    "active": false
+  },
+  {
+    "id": "1776435919117",
+    "name": "Çalışma masası2",
+    "desc": "aaa",
+    "condition": "Sıfır",
+    "category": "Yük Konteyneri",
+    "images": [
+      "https://i.ibb.co/rKvZ2fxp/indir-1.jpg",
+      "https://i.ibb.co/5xJzDhW3/indir.jpg"
+    ],
+    "active": true
+  },
+  {
+    "id": "1776446290976",
+    "name": "masa10",
+    "desc": "aaaaaaaaaaaa",
+    "condition": "Sıfır",
+    "category": "Yaşam Konteyneri",
+    "images": [
+      "https://i.ibb.co/rKvZ2fxp/indir-1.jpg",
+      "https://i.ibb.co/5xJzDhW3/indir.jpg",
+      "https://i.ibb.co/5gxf55Kw/konteyner-resim-1024x683.jpg"
+    ],
+    "active": true
+  },
+  {
+    "id": "1776448857776",
+    "name": "konteyner19",
+    "desc": "aaaaa",
+    "condition": "Sıfır",
+    "category": "Yük Konteyneri",
+    "images": [
+      "https://i.ibb.co/5gxf55Kw/konteyner-resim-1024x683.jpg",
+      "https://i.ibb.co/rKvZ2fxp/indir-1.jpg"
+    ],
+    "active": true
+  }
+]

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0RG6ZM8NDV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0RG6ZM8NDV');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metsan Konteyner – Sağlam ve Hızlı Çözümler</title>
+  <meta name="description" content="Metsan Konteyner - İhtiyacınıza uygun sıfır ve ikinci el yük, ofis ve yaşam konteynerleri. Türkiye'nin her yerine güvenli teslimat.">
+  <meta property="og:title" content="Metsan Konteyner – Sağlam ve Hızlı Çözümler">
+  <meta property="og:description" content="Sıfır ve ikinci el konteyner satış & kiralama hizmetleri. Fiyat teklifi almak için hemen tıklayın.">
+  
+  <meta property="og:image" content="https://metsankonteyner.github.io/metsan-konteyner/logo.PNG"> 
+  
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#F97316"> 
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Teko:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-light: #F8FAFC; --white: #FFFFFF;
+      --steel-dark: #0F172A; --steel-mid: #1E293B; --steel-light: #334155;
+      --orange: #F97316; --orange-hover: #EA580C;
+      --text-main: #334155; --text-muted: #64748B; --border: #E2E8F0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--text-main); overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 4rem; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 3px solid var(--orange); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; text-decoration: none; color: #CBD5E1; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta { background: var(--orange); color: var(--white); padding: 0.6rem 1.4rem; border-radius: 4px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--orange-hover); }
+
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 80px 4rem 0; background: var(--steel-dark); position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; right: -10%; top: 0; width: 50%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.03) 20px, rgba(255,255,255,0.03) 40px); transform: skewX(-15deg); }
+    .hero-content { max-width: 650px; position: relative; z-index: 1; }
+    .hero-tag { display: inline-block; background: rgba(249, 115, 22, 0.2); color: var(--orange); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1.5rem; border: 1px solid rgba(249, 115, 22, 0.4); }
+    .hero-title { font-family: 'Teko', sans-serif; font-size: 5rem; font-weight: 700; line-height: 0.9; color: var(--white); margin-bottom: 1.5rem; text-transform: uppercase; }
+    .hero-title span { color: var(--orange); }
+    .hero-desc { font-size: 1.1rem; line-height: 1.6; color: #94A3B8; margin-bottom: 2.5rem; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { background: var(--orange); color: var(--white); padding: 1rem 2.5rem; border-radius: 4px; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+    .btn-primary:hover { background: var(--orange-hover); transform: translateY(-2px); }
+    .btn-outline { border: 2px solid #475569; color: var(--white); padding: 1rem 2.5rem; border-radius: 4px; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+    .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+
+    section { padding: 6rem 4rem; }
+    .section-label { color: var(--orange); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .section-title { font-family: 'Teko', sans-serif; font-size: 3.5rem; font-weight: 700; color: var(--steel-dark); line-height: 1; margin-bottom: 1rem; text-transform: uppercase; }
+    .section-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
+
+    .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .filter-btn { background: transparent; border: 2px solid var(--border); color: var(--text-muted); padding: 0.6rem 1.2rem; border-radius: 30px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
+    .filter-btn:hover { border-color: var(--orange); color: var(--orange); }
+    .filter-btn.active { background: var(--orange); border-color: var(--orange); color: var(--white); }
+
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+    .product-card { background: var(--white); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; cursor: pointer; }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.08); border-color: var(--orange); }
+    .product-img { height: 220px; background: #E2E8F0; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; }
+    .product-badge { position: absolute; top: 12px; right: 12px; background: var(--steel-dark); color: var(--white); font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; }
+    .product-body { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+    .product-cat { color: var(--orange); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .product-name { font-size: 1.25rem; font-weight: 800; color: var(--steel-dark); margin-bottom: 0.5rem; line-height: 1.3; }
+    .product-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.5rem; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    
+    .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; }
+    .product-price { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--orange); margin: 0; line-height: 1; white-space: nowrap; }
+    .product-order { background: var(--steel-light); color: var(--white); padding: 0.8rem; text-align: center; border-radius: 4px; font-weight: 600; text-decoration: none; transition: background 0.2s; flex: 1; }
+    .product-order:hover { background: var(--orange); }
+
+    .c-modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.85); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 2rem; backdrop-filter: blur(5px); }
+    .c-modal-overlay.open { display: flex; }
+    .c-modal-box { background: var(--white); border-radius: 8px; width: 100%; max-width: 900px; max-height: 90vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .c-modal-close { position: absolute; top: 1rem; right: 1rem; background: var(--bg-light); border: 1px solid var(--border); width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem; font-weight:bold; color: var(--steel-dark); cursor: pointer; z-index: 10; display:flex; align-items:center; justify-content:center; transition: 0.2s;}
+    .c-modal-close:hover { background: var(--border); color: #EF4444; }
+    .c-modal-gallery { background: var(--bg-light); padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; border-right: 1px solid var(--border); }
+    .c-main-img { width: 100%; height: 350px; object-fit: cover; border-radius: 6px; background: #E2E8F0; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+    .c-thumbs { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; }
+    .c-thumb { width: 70px; height: 70px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px; transition: 0.2s; }
+    .c-thumb.active { border-color: var(--orange); }
+    
+    .c-modal-info { padding: 2.5rem; display: flex; flex-direction: column; overflow-y: auto; height: 100%; max-height: 90vh; }
+    .c-modal-info::-webkit-scrollbar { width: 6px; }
+    .c-modal-info::-webkit-scrollbar-track { background: var(--bg-light); border-radius: 8px; }
+    .c-modal-info::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 8px; }
+
+    .c-modal-cat { color: var(--orange); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 1px; }
+    .c-modal-name { font-size: 2.2rem; font-weight: 800; color: var(--steel-dark); margin-bottom: 0.5rem; line-height: 1.1; }
+    .c-modal-price { font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 700; color: var(--orange); margin-bottom: 1rem; line-height: 1; }
+    .c-modal-badge { display: inline-flex; background: var(--steel-dark); color: var(--white); font-size: 0.8rem; font-weight: 700; padding: 6px 12px; border-radius: 4px; text-transform: uppercase; margin-bottom: 1.5rem; align-self: flex-start; }
+    .c-modal-desc { font-size: 1.05rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 2.5rem; }
+    
+    #iletisim { background: var(--steel-dark); color: var(--white); text-align: center; }
+    #iletisim .section-title { color: var(--white); margin: 0 auto 1rem; }
+    #iletisim .section-sub { color: #94A3B8; margin: 0 auto 3rem; }
+    .contact-cards { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+    .contact-card { background: var(--steel-mid); padding: 2rem; border-radius: 6px; min-width: 250px; border-bottom: 4px solid var(--orange); }
+    .contact-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .contact-label { color: #94A3B8; font-size: 0.85rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; }
+    .contact-val { font-size: 1.2rem; font-weight: 800; color: var(--white); }
+    .whatsapp-btn { background: #25D366; color: white; padding: 1.2rem 3rem; border-radius: 4px; font-size: 1.1rem; font-weight: 700; text-decoration: none; display: inline-block; transition: transform 0.2s; }
+    .whatsapp-btn:hover { transform: scale(1.05); }
+
+    footer { background: #020617; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; color: #64748B; font-size: 0.9rem; }
+    .footer-logo { font-family: 'Teko', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--white); }
+    .footer-logo span { color: var(--orange); }
+    .footer-admin { color: #64748B; text-decoration: none; font-weight: 600; }
+    .footer-admin:hover { color: var(--orange); }
+
+    .float-wa { position: fixed; bottom: 2rem; right: 2rem; z-index: 999; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37,211,102,0.4); text-decoration: none; transition: transform 0.2s; }
+    .float-wa:hover { transform: scale(1.1); }
+    .float-wa svg { width: 32px; height: 32px; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem; }
+      .nav-links { display: none; }
+      .hero { padding: 120px 2rem 4rem; }
+      .hero-title { font-size: 3.5rem; }
+      section { padding: 4rem 2rem; }
+      .c-modal-box { grid-template-columns: 1fr; max-height: 95vh; overflow-y: auto; }
+      .c-main-img { height: 250px; }
+      .c-modal-info { padding: 1.5rem; height: auto; max-height: none; overflow-y: visible; }
+      footer { padding: 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" style="display: flex; align-items: center; text-decoration: none; background: #FFFFFF; padding: 6px 16px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+    <img src="logo.PNG" alt="Metsan Logo" style="height: 45px; width: auto; object-fit: contain;">
+  </a>
+  
+  <ul class="nav-links">
+    <li><a href="#urunler">Konteynerler</a></li>
+    <li><a href="#hakkimizda">Hakkımızda</a></li>
+    <li><a href="#iletisim">İletişim</a></li>
+  </ul>
+  <a href="https://wa.me/905324649334?text=Merhaba%2C%20fiyat%20almak%20istiyorum." class="nav-cta" target="_blank">Fiyat Teklifi Al</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Güvenilir Endüstriyel Çözümler</div>
+    <h1 class="hero-title">Dünyanın Yükünü<br><span>Hayatın Alanını</span> Taşıyoruz</h1>
+    <p class="hero-desc">İhtiyacınıza uygun sıfır ve ikinci el yük, ofis ve yaşam konteynerleri. Türkiye'nin her yerine güvenli ve hızlı teslimat.</p>
+    <div class="hero-btns">
+      <a href="#urunler" class="btn-primary">Ürünleri İncele</a>
+      <a href="https://wa.me/905324649334?text=Merhaba%2C%20bilgi%20almak%20istiyorum." class="btn-outline" target="_blank">WhatsApp'tan Ulaşın</a>
+    </div>
+  </div>
+</section>
+
+<section id="urunler">
+  <div class="section-label">Satış & Kiralama</div>
+  <h2 class="section-title">Konteyner Çeşitleri</h2>
+  <p class="section-sub">Stoklarımızdaki güncel sıfır ve ikinci el konteyner seçeneklerimizi aşağıdan inceleyebilirsiniz. İlgilendiğiniz kategoriye tıklayarak ürünleri filtreleyebilirsiniz.</p>
+  
+  <div class="filter-tabs" id="filterTabs">
+    <button class="filter-btn active" onclick="filterProducts('all', this)">Tümü</button>
+    <button class="filter-btn" onclick="filterProducts('Yük Konteyneri', this)">Yük Konteyneri</button>
+    <button class="filter-btn" onclick="filterProducts('Ofis Konteyneri', this)">Ofis Konteyneri</button>
+    <button class="filter-btn" onclick="filterProducts('Yaşam Konteyneri', this)">Yaşam</button>
+    <button class="filter-btn" onclick="filterProducts('Sıfır', this)">Sıfır İlanlar</button>
+    <button class="filter-btn" onclick="filterProducts('İkinci El', this)">İkinci El</button>
+  </div>
+
+  <div class="products-grid" id="productsGrid">
+    <p>Ürünler yükleniyor...</p>
+  </div>
+</section>
+
+<section id="hakkimizda">
+  <div class="section-label">Kurumsal</div>
+  <h2 class="section-title">Metsan Konteyner</h2>
+  <p class="section-sub">Metsan Konteyner olarak, yılların verdiği tecrübe ile endüstriyel konteyner çözümlerinde öncü rol oynamaktayız. Kalite, sağlamlık ve müşteri memnuniyeti odaklı hizmet anlayışımızla Türkiye'nin her noktasına hızlı ve güvenli teslimat sağlıyoruz.</p>
+</section>
+
+<section id="iletisim">
+  <div class="section-label">Bize Ulaşın</div>
+  <h2 class="section-title">Hızlı İletişim Hattı</h2>
+  <p class="section-sub">Stok bilgisi, teknik detaylar ve nakliye dahil fiyat teklifleri için uzman ekibimizle hemen görüşün.</p>
+  
+  <div class="contact-cards">
+    <div class="contact-card"><div class="contact-icon">📞</div><div class="contact-label">Telefon & WhatsApp</div><div class="contact-val">0532 464 93 34</div></div>
+    <div class="contact-card"><div class="contact-icon">🚚</div><div class="contact-label">Nakliye Ağı</div><div class="contact-val">Tüm Türkiye</div></div>
+    <div class="contact-card"><div class="contact-icon">🏢</div><div class="contact-label">Hizmetler</div><div class="contact-val">Satış & Revizyon</div></div>
+  </div>
+
+  <a href="https://wa.me/905324649334?text=Merhaba%2C%20Metsan%20Konteyner%20ile%20görüşmek%20istiyorum." class="whatsapp-btn" target="_blank">WhatsApp'tan Mesaj Gönder</a>
+</section>
+
+<footer>
+  <div class="footer-logo">METSAN<span>.</span></div>
+  <div>© 2026 Metsan Konteyner. Tüm hakları saklıdır.</div>
+  <a href="admin.html" class="footer-admin">Sistem Girişi</a>
+</footer>
+
+<div class="c-modal-overlay" id="productModal">
+  <div class="c-modal-box">
+    <button class="c-modal-close" onclick="closeProductDetail()">✕</button>
+    <div class="c-modal-gallery">
+      <div class="c-main-img" id="mMainImgBox">Görsel Yok</div>
+      <div class="c-thumbs" id="mThumbs"></div>
+    </div>
+    <div class="c-modal-info">
+      <div class="c-modal-cat" id="mCat">Kategori</div>
+      <div class="c-modal-price" id="mPrice" style="display: none;"></div>
+      <div class="c-modal-name" id="mName">Ürün Adı</div>
+      <div class="c-modal-badge" id="mCondition">Durum</div>
+      <div class="c-modal-desc" id="mDesc">Açıklama metni...</div>
+      <a href="#" id="mOrder" class="btn-primary" style="text-align:center; width:100%; display:block; padding:1.2rem;" target="_blank">WhatsApp'tan Sipariş & Bilgi</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const WA = '905324649334';
+let allProducts = [];
+
+function formatPrice(priceStr) {
+  if (!priceStr) return '';
+  const num = parseInt(priceStr.replace(/[^0-9]/g, ''));
+  if (isNaN(num)) return priceStr; 
+  
+  return new Intl.NumberFormat('tr-TR', { 
+    style: 'currency', 
+    currency: 'TRY', 
+    minimumFractionDigits: 0
+  }).format(num);
+}
+
+function productCardHTML(p) {
+  const firstImage = (p.images && p.images.length > 0) ? p.images[0] : (p.image ? p.image : null);
+  const imgHTML = firstImage 
+    ? `<img src="${firstImage}" alt="${p.name}" />` 
+    : `<div style="color:#94A3B8; font-weight:600; text-transform:uppercase;">Görsel Yok</div>`;
+    
+  const priceHTML = p.price ? `<div class="product-price">${formatPrice(p.price)}</div>` : '';
+    
+  return `
+    <div class="product-card" onclick="openProductDetail('${p.id}')">
+      <div class="product-img">
+        ${imgHTML}
+        <div class="product-badge">${p.condition}</div>
+      </div>
+      <div class="product-body">
+        <div class="product-cat">${p.category}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-footer">
+          ${priceHTML}
+          <div class="product-order">İncele & Bilgi Al</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function filterProducts(filterVal, btnElement) {
+  if (btnElement) {
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    btnElement.classList.add('active');
+  }
+  
+  const activeProds = allProducts.filter(p => p.active !== false);
+  let filtered = activeProds;
+  
+  if(filterVal !== 'all') {
+    filtered = activeProds.filter(p => p.category === filterVal || p.condition === filterVal);
+  }
+  
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = filtered.length 
+    ? filtered.map(productCardHTML).join('') 
+    : '<p style="grid-column: 1/-1; text-align:center; padding: 3rem; color: #64748B; font-weight: 600;">Bu kategoride henüz ürün bulunmuyor.</p>';
+}
+
+async function loadProducts() {
+  const grid = document.getElementById('productsGrid');
+  try {
+    const res = await fetch('products.json?t=' + Date.now(), { cache: 'no-store' });
+    const data = await res.json();
+    allProducts = data;
+    
+    const firstBtn = document.querySelector('.filter-btn');
+    filterProducts('all', firstBtn);
+  } catch(e) {
+    grid.innerHTML = '<p>Ürünler yüklenirken bir hata oluştu.</p>';
+  }
+}
+
+function openProductDetail(id) {
+  const p = allProducts.find(x => x.id === id);
+  if(!p) return;
+
+  document.getElementById('mCat').textContent = p.category;
+  document.getElementById('mName').textContent = p.name;
+  document.getElementById('mCondition').textContent = p.condition;
+  document.getElementById('mDesc').textContent = p.desc;
+  
+  const mPrice = document.getElementById('mPrice');
+  const mOrder = document.getElementById('mOrder');
+  
+  if(p.price) {
+    mPrice.textContent = formatPrice(p.price);
+    mPrice.style.display = 'block';
+    mOrder.textContent = "WhatsApp'tan Sipariş & Bilgi";
+  } else {
+    mPrice.style.display = 'none';
+    mOrder.textContent = "Bu Ürün İçin Fiyat Al";
+  }
+  
+  const priceText = p.price ? ` (${formatPrice(p.price)})` : '';
+  const waMsg = encodeURIComponent(`Merhaba, web sitenizdeki "${p.name}"${priceText} (${p.condition}) hakkında detaylı bilgi almak istiyorum.`);
+  mOrder.href = `https://wa.me/${WA}?text=${waMsg}`;
+
+  const mainImgBox = document.getElementById('mMainImgBox');
+  const thumbsBox = document.getElementById('mThumbs');
+  let imgs = p.images && p.images.length > 0 ? p.images : (p.image ? [p.image] : []);
+
+  if(imgs.length > 0) {
+    mainImgBox.innerHTML = `<img src="${imgs[0]}" style="width:100%; height:100%; object-fit:cover; border-radius:6px;" id="mMainImg" />`;
+    if(imgs.length > 1) {
+      thumbsBox.innerHTML = imgs.map((img, idx) => `
+        <img src="${img}" class="c-thumb ${idx===0 ? 'active' : ''}" onclick="changeGalleryImg(this, '${img}')" />
+      `).join('');
+    } else {
+      thumbsBox.innerHTML = '';
+    }
+  } else {
+    mainImgBox.innerHTML = 'Görsel Yok';
+    thumbsBox.innerHTML = '';
+  }
+
+  document.getElementById('productModal').classList.add('open');
+}
+
+function changeGalleryImg(element, src) {
+  document.getElementById('mMainImg').src = src;
+  document.querySelectorAll('.c-thumb').forEach(el => el.classList.remove('active'));
+  element.classList.add('active');
+}
+
+function closeProductDetail() {
+  document.getElementById('productModal').classList.remove('open');
+}
+
+document.getElementById('productModal').addEventListener('click', function(e) {
+  if (e.target === this) closeProductDetail();
+});
+
+loadProducts();
+</script>
+</body>
+</html>

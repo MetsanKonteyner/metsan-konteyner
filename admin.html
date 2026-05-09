@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metsan – Yönetici Paneli</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Teko:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F172A; --surface: #1E293B; --surface2: #334155; --border: #475569;
+    --accent: #F97316; --accent-light: #FB923C;
+    --text: #F8FAFC; --text-muted: #94A3B8;
+    --success: #22C55E; --danger: #EF4444;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* SETUP & LOGIN */
+  #setupScreen, #loginScreen { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+  .setup-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 3rem; max-width: 500px; width: 100%; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+  .setup-logo { font-family: 'Teko', sans-serif; font-size: 2rem; color: var(--text); margin-bottom: 0.3rem; letter-spacing: 1px;}
+  .setup-logo span { color: var(--accent); }
+  .setup-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;}
+  .form-group { margin-bottom: 1.2rem; }
+  label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase;}
+  input[type="text"], input[type="password"], select, textarea { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 0.7rem 1rem; color: var(--text); font-size: 0.9rem; font-family: inherit; outline: none; transition: border 0.2s; }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+  .btn { width: 100%; background: var(--accent); color: white; border: none; padding: 0.9rem; border-radius: 4px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 1rem; text-transform: uppercase;}
+  .btn:hover { background: var(--accent-light); }
+  .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text-muted); margin-top: 0.5rem; }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: transparent; }
+  .alert { padding: 0.75rem 1rem; border-radius: 4px; font-size: 0.85rem; margin-bottom: 1rem; }
+  .alert-err { background: rgba(239, 68, 68, 0.1); border: 1px solid var(--danger); color: var(--danger); }
+  .alert-ok { background: rgba(34, 197, 94, 0.1); border: 1px solid var(--success); color: var(--success); }
+
+  /* MAIN PANEL */
+  #mainPanel { display: none; min-height: 100vh; }
+  .panel-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+  .panel-logo { font-family: 'Teko', sans-serif; font-size: 1.5rem; letter-spacing: 1px; }
+  .panel-logo span { color: var(--accent); }
+  .header-actions { display: flex; gap: 1rem; align-items: center; }
+  .badge { font-size: 0.7rem; padding: 4px 10px; border-radius: 4px; font-weight: 600; text-transform: uppercase; }
+  .badge-live { background: rgba(34, 197, 94, 0.1); color: var(--success); border: 1px solid var(--success); }
+  .icon-btn { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.8rem; cursor: pointer; font-weight: 500; transition: all 0.2s; }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .panel-body { padding: 2rem; max-width: 1100px; margin: 0 auto; }
+  
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .stat-box { background: var(--surface); padding: 1.5rem; border-radius: 6px; border: 1px solid var(--border); }
+  .stat-box-num { font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1; }
+  .stat-box-label { font-size: 0.75rem; text-transform: uppercase; font-weight: 600; color: var(--text-muted); margin-top: 8px; }
+  
+  .section-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
+  .section-head h2 { font-size: 1.2rem; font-weight: 600; }
+  .add-btn { background: var(--accent); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 4px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+  .add-btn:hover { background: var(--accent-light); }
+
+  /* TABLE */
+  .product-table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }
+  .product-table th { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600; padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.2); }
+  .product-table td { padding: 1rem; font-size: 0.9rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .product-table tbody tr:hover { background: var(--surface2); }
+  .td-cat { font-size: 0.75rem; background: var(--surface2); padding: 4px 8px; border-radius: 4px; font-weight: 600; color: var(--text-muted); }
+  
+  .toggle { position: relative; width: 40px; height: 22px; display: inline-block; }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider { position: absolute; inset: 0; background: var(--border); border-radius: 20px; cursor: pointer; transition: 0.2s; }
+  .toggle-slider::before { content: ''; position: absolute; height: 16px; width: 16px; left: 3px; top: 3px; background: var(--text); border-radius: 50%; transition: 0.2s; }
+  .toggle input:checked + .toggle-slider { background: var(--success); }
+  .toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
+  
+  .row-actions button { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; margin-right: 5px; }
+  .row-actions button:hover { border-color: var(--accent); color: var(--accent); }
+  .row-actions .del-btn:hover { border-color: var(--danger); color: var(--danger); }
+
+  /* MODAL */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100; display: none; align-items: center; justify-content: center; padding: 2rem; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 2rem; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; }
+  .modal-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem;}
+  .modal-close { background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
+  .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .modal-grid .full { grid-column: 1 / -1; }
+  .modal-footer { display: flex; gap: 1rem; margin-top: 1.5rem; }
+
+  /* PREVIEW GALLERY CSS */
+  .preview-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+  .img-preview-wrap { position: relative; display: inline-block; }
+  .img-preview { width: 70px; height: 70px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border); }
+  .img-remove { position: absolute; top: -5px; right: -5px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .img-remove:hover { background: #b91c1c; }
+
+  #toast { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; display: flex; flex-direction: column; gap: 0.5rem; }
+  .toast-item { background: var(--surface2); border-left: 4px solid var(--success); padding: 1rem; border-radius: 4px; font-size: 0.9rem; font-weight: 500; animation: slideIn 0.3s ease; }
+  .toast-item.err { border-left-color: var(--danger); }
+  @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+</style>
+</head>
+<body>
+
+<div id="setupScreen">
+  <div class="setup-card">
+    <div class="setup-logo">METSAN<span>.</span></div>
+    <div class="setup-subtitle">Sistem Kurulumu</div>
+    <div id="setupAlert"></div>
+    <div class="form-group"><label>GitHub Kullanıcı Adı</label><input type="text" id="ghUser" placeholder="örnek: ahmet" /></div>
+    <div class="form-group"><label>Repository Adı</label><input type="text" id="ghRepo" placeholder="örnek: metsan-repo" /></div>
+    <div class="form-group"><label>GitHub Access Token</label><input type="password" id="ghToken" placeholder="ghp_..." /></div>
+    <div class="form-group"><label>Panele Giriş Şifresi</label><input type="password" id="adminPass" placeholder="Yeni şifre belirle" /></div>
+    <button class="btn" onclick="saveSetup()">Bağlan</button>
+  </div>
+</div>
+
+<div id="loginScreen" style="display:none">
+  <div class="setup-card">
+    <div class="setup-logo">METSAN<span>.</span></div>
+    <div class="setup-subtitle">Yönetici Girişi</div>
+    <div id="loginAlert"></div>
+    <div class="form-group"><label>Şifre</label><input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter') doLogin()" autofocus /></div>
+    <button class="btn" onclick="doLogin()">Giriş Yap</button>
+    <button class="btn btn-secondary" onclick="resetSetup()">Ayarları Sıfırla</button>
+  </div>
+</div>
+
+<div id="mainPanel">
+  <div class="panel-header">
+    <div class="panel-logo">METSAN<span>.</span> Admin</div>
+    <div class="header-actions">
+      <span class="badge badge-live">Canlı Sistem</span>
+      <div id="saveStatus" style="font-size: 0.8rem; font-weight: 600; color: var(--accent);"></div>
+      <button class="icon-btn" onclick="window.open('index.html','_blank')">Siteyi Gör ↗</button>
+      <button class="icon-btn" onclick="logout()">Çıkış</button>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-box-num" id="statTotal">0</div><div class="stat-box-label">Toplam Konteyner</div></div>
+      <div class="stat-box"><div class="stat-box-num" id="statActive">0</div><div class="stat-box-label">Vitrin (Aktif)</div></div>
+    </div>
+
+    <div class="section-head">
+      <h2>Konteyner Stok Listesi</h2>
+      <button class="add-btn" onclick="openModal()">+ Yeni Konteyner Ekle</button>
+    </div>
+
+    <table class="product-table">
+      <thead><tr><th>Ürün Adı</th><th>Kategori</th><th>Durum</th><th>Görsel</th><th>Vitrin</th><th>İşlemler</th></tr></thead>
+      <tbody id="productTbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal-overlay" id="productModal">
+  <div class="modal">
+    <div class="modal-title">
+      <span id="modalTitle">Konteyner Ekle</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <input type="hidden" id="editId" />
+    
+    <div class="modal-grid">
+      <div class="full form-group">
+        <label>Ürün Adı / Başlık</label>
+        <input type="text" id="fName" placeholder="Örn: 20ft Standart Yük Konteyneri" />
+      </div>
+      <div class="full form-group">
+        <label>Açıklama / Özellikler</label>
+        <textarea id="fDesc" placeholder="Detayları buraya yazın..." style="height: 80px; resize: none;"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Kategori</label>
+        <select id="fCategory">
+          <option value="Yük Konteyneri">Yük Konteyneri</option>
+          <option value="Ofis Konteyneri">Ofis Konteyneri</option>
+          <option value="Yaşam Konteyneri">Yaşam Konteyneri</option>
+          <option value="Özel Üretim">Özel Üretim</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Durum</label>
+        <select id="fCondition">
+          <option value="Sıfır">Sıfır</option>
+          <option value="İkinci El">İkinci El</option>
+          <option value="Revizyonlu">Revizyonlu</option>
+        </select>
+      </div>
+      <div class="full form-group">
+        <label>Fiyat (Binlik ayırıcı olmadan sadece sayı, Örn: 45000)</label>
+        <input type="text" id="fPrice" placeholder="Örn: 45000, 1500, veya Fiyat Sorunuz" />
+      </div>
+
+      <div class="full form-group" style="background: var(--surface2); padding: 1rem; border-radius: 6px; border: 1px dashed var(--border);">
+        <label>Ürün Görselleri (Bilgisayardan Seç)</label>
+        <input type="file" id="imageUpload" accept="image/*" onchange="uploadImage(this)" style="background: transparent; border: none; padding: 0;" />
+        <div id="uploadStatus" style="font-size: 0.8rem; margin-top: 8px; color: var(--accent);">Üst üste birden fazla fotoğraf seçip yükleyebilirsiniz.</div>
+        <div id="imagePreviews" class="preview-container"></div>
+      </div>
+      
+      <div class="form-group">
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer; margin-top: 10px;">
+          <label class="toggle"><input type="checkbox" id="fActive" checked /><span class="toggle-slider"></span></label>
+          Sitede Göster (Aktif)
+        </label>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal()" style="margin-top:0;">İptal</button>
+      <button class="btn" onclick="saveProduct()" style="margin-top:0;">Kaydet & Yayınla</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+let products = [];
+let cfg = null;
+let fileSHA = '';
+let currentImages = []; 
+
+function init() {
+  const saved = localStorage.getItem('metsan_cfg');
+  if (!saved) { show('setupScreen'); return; }
+  cfg = JSON.parse(saved);
+  const session = sessionStorage.getItem('metsan_auth');
+  if (session !== 'ok') { show('loginScreen'); return; }
+  show('mainPanel');
+  loadProducts();
+}
+
+function show(id) { ['setupScreen','loginScreen','mainPanel'].forEach(s => { document.getElementById(s).style.display = s === id ? (id === 'mainPanel' ? 'block' : 'flex') : 'none'; }); }
+
+async function saveSetup() {
+  const user = v('ghUser').trim(), repo = v('ghRepo').trim(), token = v('ghToken').trim(), pass = v('adminPass').trim();
+  if (!user || !repo || !token || !pass) return setAlert('setupAlert','Tüm alanları doldurun.','err');
+  setAlert('setupAlert','Bağlantı test ediliyor...','ok');
+  try {
+    const r = await fetch(`https://api.github.com/repos/${user}/${repo}`, { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' } });
+    if (!r.ok) throw new Error();
+    const hash = await sha256(pass);
+    localStorage.setItem('metsan_cfg', JSON.stringify({ user, repo, token, passHash: hash }));
+    sessionStorage.setItem('metsan_auth', 'ok');
+    cfg = JSON.parse(localStorage.getItem('metsan_cfg'));
+    show('mainPanel'); loadProducts();
+  } catch { setAlert('setupAlert','Bağlantı başarısız. Bilgileri kontrol edin.','err'); }
+}
+
+async function doLogin() {
+  const hash = await sha256(v('loginPass'));
+  if (hash === cfg.passHash) { sessionStorage.setItem('metsan_auth', 'ok'); show('mainPanel'); loadProducts(); } 
+  else { setAlert('loginAlert','Şifre yanlış.','err'); }
+}
+
+function logout() { sessionStorage.removeItem('metsan_auth'); show('loginScreen'); v('loginPass').value = ''; }
+function resetSetup() { if(confirm('Ayarları sıfırlamak istiyor musunuz?')) { localStorage.removeItem('metsan_cfg'); sessionStorage.removeItem('metsan_auth'); location.reload(); } }
+
+async function ghReq(method, path, body = null) {
+  const opts = { 
+    method, 
+    headers: { Authorization: `token ${cfg.token}`, Accept: 'application/vnd.github.v3+json' },
+    cache: 'no-store'
+  };
+  if (body) { opts.headers['Content-Type'] = 'application/json'; opts.body = JSON.stringify(body); }
+  
+  const url = method === 'GET' 
+    ? `https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/${path}?t=${Date.now()}` 
+    : `https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/${path}`;
+
+  const r = await fetch(url, opts);
+  if (!r.ok) throw new Error();
+  return r.json();
+}
+
+async function loadProducts() {
+  try {
+    const data = await ghReq('GET', 'products.json');
+    fileSHA = data.sha;
+    products = JSON.parse(decodeURIComponent(escape(atob(data.content.replace(/\n/g,'')))));
+    renderTable();
+  } catch { toast('Veriler yüklenemedi.', 'err'); }
+}
+
+async function saveToGitHub() {
+  document.getElementById('saveStatus').textContent = "Kaydediliyor...";
+  try {
+    const json = JSON.stringify(products, null, 2);
+    const body = { message: 'Konteyner listesi güncellendi', content: btoa(unescape(encodeURIComponent(json))), sha: fileSHA };
+    const result = await ghReq('PUT', 'products.json', body);
+    fileSHA = result.content.sha;
+    document.getElementById('saveStatus').textContent = "✓ Yayınlandı";
+    setTimeout(() => document.getElementById('saveStatus').textContent = '', 3000);
+    toast('✓ Değişiklikler siteye yayınlandı!');
+  } catch { toast('Kayıt başarısız.', 'err'); document.getElementById('saveStatus').textContent = "Hata!"; }
+}
+
+function renderTable() {
+  const tbody = document.getElementById('productTbody');
+  tbody.innerHTML = products.map(p => {
+    const imgCount = p.images ? p.images.length : (p.image ? 1 : 0);
+    return `
+    <tr>
+      <td style="font-weight:600;">${p.name}</td>
+      <td><span class="td-cat">${p.category}</span></td>
+      <td>${p.condition}</td>
+      <td><span style="color:var(--text-muted)">${imgCount} Görsel</span></td>
+      <td>
+        <label class="toggle">
+          <input type="checkbox" ${p.active !== false ? 'checked' : ''} onchange="toggleActive('${p.id}', this.checked)" />
+          <span class="toggle-slider"></span>
+        </label>
+      </td>
+      <td class="row-actions">
+        <button onclick="openModal('${p.id}')">Düzenle</button>
+        <button class="del-btn" onclick="deleteProduct('${p.id}')">Sil</button>
+      </td>
+    </tr>`;
+  }).join('');
+  document.getElementById('statTotal').textContent = products.length;
+  document.getElementById('statActive').textContent = products.filter(p => p.active !== false).length;
+}
+
+function renderPreviews() {
+  const container = document.getElementById('imagePreviews');
+  container.innerHTML = currentImages.map((url, i) => `
+    <div class="img-preview-wrap">
+      <img src="${url}" class="img-preview" />
+      <button class="img-remove" onclick="removeImage(${i})" title="Sil">✕</button>
+    </div>
+  `).join('');
+}
+
+function removeImage(index) {
+  currentImages.splice(index, 1);
+  renderPreviews();
+}
+
+function openModal(id) {
+  document.getElementById('imageUpload').value = '';
+  document.getElementById('uploadStatus').textContent = 'Üst üste birden fazla fotoğraf seçip yükleyebilirsiniz.';
+  
+  if (id) {
+    const p = products.find(x => x.id === id);
+    document.getElementById('modalTitle').textContent = 'Konteyner Düzenle';
+    document.getElementById('editId').value = id;
+    document.getElementById('fName').value = p.name;
+    document.getElementById('fDesc').value = p.desc;
+    document.getElementById('fCondition').value = p.condition || 'Sıfır';
+    document.getElementById('fCategory').value = p.category;
+    document.getElementById('fPrice').value = p.price || '';
+    document.getElementById('fActive').checked = p.active !== false;
+    currentImages = p.images ? [...p.images] : (p.image ? [p.image] : []);
+  } else {
+    document.getElementById('modalTitle').textContent = 'Yeni Konteyner Ekle';
+    document.getElementById('editId').value = '';
+    document.getElementById('fName').value = '';
+    document.getElementById('fDesc').value = '';
+    document.getElementById('fCondition').value = 'Sıfır';
+    document.getElementById('fCategory').value = 'Yük Konteyneri';
+    document.getElementById('fPrice').value = '';
+    document.getElementById('fActive').checked = true;
+    currentImages = [];
+  }
+  
+  renderPreviews();
+  document.getElementById('productModal').classList.add('open');
+}
+
+function closeModal() { document.getElementById('productModal').classList.remove('open'); }
+
+async function saveProduct() {
+  const name = v('fName').trim(), desc = v('fDesc').trim();
+  if (!name || !desc) return toast('Ad ve açıklama zorunlu!', 'err');
+  
+  const editId = v('editId');
+  const product = {
+    id: editId || Date.now().toString(),
+    name, desc,
+    price: v('fPrice').trim(),
+    condition: v('fCondition'),
+    category: v('fCategory'),
+    images: currentImages,
+    active: document.getElementById('fActive').checked
+  };
+  
+  if (editId) {
+    const idx = products.findIndex(p => p.id === editId);
+    if (idx !== -1) products[idx] = product;
+  } else { products.push(product); }
+  
+  closeModal(); renderTable(); await saveToGitHub();
+}
+
+async function deleteProduct(id) {
+  if (!confirm('Silmek istediğinize emin misiniz?')) return;
+  products = products.filter(p => p.id !== id);
+  renderTable(); await saveToGitHub();
+}
+
+async function toggleActive(id, active) {
+  const p = products.find(x => x.id === id);
+  if (p) { p.active = active; renderTable(); await saveToGitHub(); }
+}
+
+async function uploadImage(input) {
+  const file = input.files[0]; if (!file) return;
+  const status = document.getElementById('uploadStatus');
+  status.textContent = "⏳ Görsel yükleniyor, lütfen bekleyin..."; status.style.color = "var(--accent)";
+  
+  const formData = new FormData(); formData.append("image", file);
+  try {
+    const apiKey = "d9f85b9f33d0e30370bf5e9763ff8872"; 
+    const res = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, { method: "POST", body: formData });
+    const data = await res.json();
+    
+    if (data.success) {
+      currentImages.push(data.data.url);
+      renderPreviews();
+      status.textContent = "✓ Görsel başarıyla eklendi! Başka ekleyebilirsiniz."; 
+      status.style.color = "var(--success)";
+      input.value = ''; 
+    } else { 
+      status.textContent = "✗ Hata: " + data.error.message; 
+      status.style.color = "var(--danger)"; 
+    }
+  } catch (e) { status.textContent = "✗ Bağlantı hatası."; status.style.color = "var(--danger)"; }
+}
+
+function v(id) { return document.getElementById(id).value; }
+function setAlert(id, msg, type) { document.getElementById(id).innerHTML = `<div class="alert alert-${type}">${msg}</div>`; }
+function toast(msg, type='ok') { const el = document.createElement('div'); el.className = 'toast-item ' + type; el.textContent = msg; document.getElementById('toast').appendChild(el); setTimeout(() => el.remove(), 3000); }
+async function sha256(msg) { const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg)); return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join(''); }
+
+document.getElementById('productModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+init();
+</script>
+</body>
+</html>
